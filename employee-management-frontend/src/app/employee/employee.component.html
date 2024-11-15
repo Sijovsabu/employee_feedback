@@ -1,0 +1,93 @@
+<div class="logout-container">
+  <button class="logout-btn" (click)="logout()">Logout</button>
+</div>
+<div class="container">
+  <!-- Performance Review Form (Left Side) -->
+  <div class="form-container">
+    <h2>{{ isEditing ? "Update" : "Add" }} Performance Review</h2>
+    <form id="reviewForm" (ngSubmit)="isEditing ? updateReview() : addReview()">
+      <div class="form-group">
+        <label for="employeeId">Employee *</label>
+        <select
+          id="employeeId"
+          [(ngModel)]="review.employeeName"
+          name="employeeId"
+          required
+        >
+          <option value="" disabled>Select an employee</option>
+          <option *ngFor="let employee of employees">
+            {{ employee.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="reviewText">Review *</label>
+        <textarea
+          id="reviewText"
+          [(ngModel)]="review.reviewText"
+          name="reviewText"
+          required
+          placeholder="Enter performance review"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating *</label>
+        <input
+          type="number"
+          id="rating"
+          [(ngModel)]="review.rating"
+          name="rating"
+          required
+          placeholder="Enter rating (1-5)"
+          min="1"
+          max="5"
+        />
+      </div>
+      <button type="submit">{{ isEditing ? "Update" : "Add" }} Review</button>
+      <div *ngIf="alertMessage" class="alert success">{{ alertMessage }}</div>
+    </form>
+  </div>
+
+  <!-- Performance Reviews List (Right Side as Table) -->
+  <div class="list-container">
+    <h2>Performance Reviews ({{ filteredReviews.length }})</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (keyup)="onSearchChange()"
+        placeholder="Search reviews by employee name"
+      />
+    </div>
+
+    <table class="reviews-table">
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Review</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let review of paginatedReviews">
+          <td>{{ review.employeeName }}</td>
+          <td>{{ review.reviewText }}</td>
+          <td>{{ review.rating }} / 5</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        Previous
+      </button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next
+      </button>
+    </div>
+  </div>
+</div>

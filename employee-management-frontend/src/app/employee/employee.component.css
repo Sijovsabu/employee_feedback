@@ -1,0 +1,165 @@
+/* General Styles */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.form-container {
+  width: 40%; /* Set form container width */
+  margin-right: 30px; /* Space between form and list */
+}
+
+.list-container {
+  width: 55%; /* Set list container width */
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.alert {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.scrollable-list {
+  max-height: 400px;
+  overflow-y: scroll;
+  margin-top: 20px;
+}
+
+.employee-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+}
+
+.employee-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.employee-designation,
+.employee-salary {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.employee-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edit-btn,
+.delete-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.form-container,
+.list-container {
+  width: 48%; /* Adjust as needed */
+}
+
+.reviews-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.reviews-table th,
+.reviews-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.reviews-table th {
+  background-color: #f4f4f4;
+}
+
+.actions button {
+  margin-right: 10px;
+}
+.logout-container {
+  float: right;
+}

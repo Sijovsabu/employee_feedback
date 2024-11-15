@@ -1,0 +1,157 @@
+<div class="logout-container">
+  <button class="logout-btn" (click)="logout()">Logout</button>
+</div>
+<div class="container">
+  <!-- Employee Form Section -->
+  <!-- Add this logout button to the top of your page -->
+
+  <div class="form-container">
+    <h2>Add New Employee</h2>
+    <form
+      id="employeeForm"
+      (ngSubmit)="isEditing ? updateEmployee() : addEmployee()"
+    >
+      <div class="form-group">
+        <label for="name">Name *</label>
+        <input
+          type="text"
+          id="name"
+          [(ngModel)]="employee.name"
+          name="name"
+          required
+          placeholder="Enter employee's name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="designation">Designation *</label>
+        <input
+          type="text"
+          id="designation"
+          [(ngModel)]="employee.designation"
+          name="designation"
+          required
+          placeholder="Enter employee's designation"
+        />
+      </div>
+      <div class="form-group">
+        <label for="salary">Salary *</label>
+        <input
+          type="number"
+          id="salary"
+          [(ngModel)]="employee.salary"
+          name="salary"
+          required
+          placeholder="Enter employee's salary"
+          min="0"
+        />
+      </div>
+      <button type="submit">{{ isEditing ? "Update" : "Add" }}</button>
+      <div *ngIf="alertMessage" class="alert success">{{ alertMessage }}</div>
+    </form>
+  </div>
+
+  <!-- Employees List Section -->
+  <div class="list-container">
+    <h2>Employees ({{ employees.length }})</h2>
+    <div class="scrollable-list">
+      <div *ngFor="let employee of employees" class="employee-card">
+        <div class="employee-info">
+          <div class="employee-details">
+            <span class="employee-name">{{ employee.name }}</span>
+            <span class="employee-designation"
+              >Designation: {{ employee.designation }}</span
+            >
+            <span class="employee-salary">Salary: ${{ employee.salary }}</span>
+          </div>
+        </div>
+        <div class="employee-actions">
+          <button class="edit-btn" (click)="editEmployee(employee)">
+            Edit
+          </button>
+          <button class="delete-btn" (click)="deleteEmployee(employee._id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Performance Section -->
+<div class="container">
+  <div class="form-container">
+    <h2>{{ isEditing ? "Update" : "Add" }} Performance Review</h2>
+    <form id="reviewForm" (ngSubmit)="isEditing ? updateReview() : addReview()">
+      <div class="form-group">
+        <label for="employeeId">Employee *</label>
+        <select
+          id="employeeId"
+          [(ngModel)]="review.employeeName"
+          name="employeeId"
+          required
+        >
+          <option value="" disabled>Select an employee</option>
+          <option *ngFor="let employee of employees">
+            {{ employee.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="reviewText">Review *</label>
+        <textarea
+          id="reviewText"
+          [(ngModel)]="review.reviewText"
+          name="reviewText"
+          required
+          placeholder="Enter performance review"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating *</label>
+        <input
+          type="number"
+          id="rating"
+          [(ngModel)]="review.rating"
+          name="rating"
+          required
+          placeholder="Enter rating (1-5)"
+          min="1"
+          max="5"
+        />
+      </div>
+      <button type="submit">{{ isEditing ? "Update" : "Add" }} Review</button>
+      <div *ngIf="alertMessage" class="alert success">{{ alertMessage }}</div>
+    </form>
+  </div>
+
+  <!-- Performance Reviews List Section -->
+  <div class="list-container">
+    <h2>Performance Reviews ({{ filteredReviews.length }})</h2>
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Search by employee name or review"
+        (keyup)="searchReviews($event)"
+      />
+    </div>
+    <div class="scrollable-list">
+      <div *ngFor="let review of filteredReviews" class="review-card">
+        <div class="review-info">
+          <div class="review-details">
+            <span class="review-employee">
+              Employee: {{ review.employeeName }}
+            </span>
+            <p class="review-text">{{ review.reviewText }}</p>
+            <span class="review-rating">Rating: {{ review.rating }} / 5</span>
+          </div>
+        </div>
+        <div class="review-actions">
+          <button class="edit-btn" (click)="editReview(review)">Edit</button>
+          <button class="delete-btn" (click)="deleteReview(review._id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
